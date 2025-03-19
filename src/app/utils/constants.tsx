@@ -6,11 +6,6 @@ import { HiInboxArrowDown } from "react-icons/hi2";
 import { FaTicketAlt } from "react-icons/fa";
 import { IoTicket } from "react-icons/io5";
 
-type links = {
-  href: string;
-  title: string;
-  icon: React.JSX.Element;
-};
 export const links = [
   {
     href: "/",
