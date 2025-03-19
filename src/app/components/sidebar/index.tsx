@@ -3,15 +3,28 @@ import NavLink from "../nav-link";
 import { links } from "@/app/utils/constants";
 import { IoHelpCircleOutline as Help } from "react-icons/io5";
 import { LuLogOut as Door } from "react-icons/lu";
+import Image from "next/image";
+import logo from "../../../../public/logo (1).png";
+import { Smooch_Sans } from "next/font/google";
+
+const smooch = Smooch_Sans({
+  weight: "900",
+  subsets: ["latin"],
+});
 
 const SideBar = () => {
   return (
     <aside className="p-5 bg-zinc-800 flex flex-col justify-between">
-      <div>Logo</div>
+      <div className="items-center  md:flex md:gap-3 bg-white rounded-full ">
+        <Image src={logo} alt="logo" width={50} height={50} className=" object-cover  " />
+        <span style={smooch.style} className="max-md:hidden text-4xl text-zinc-800">
+          Tickets
+        </span>
+      </div>
       <nav className="flex flex-col  ">
         {links.map((item, key) => (
           <NavLink key={key} href={item.href}>
-            <div className="flex items-center gap-2 px-3 py-2 md:pe-8 rounded-md">
+            <div className="flex items-center gap-2 px-3 py-2 md:pe-8 ">
               <span className="max-md:text-xl">{item.icon}</span>
               <span className="max-md:hidden"> {item.title} </span>
             </div>
