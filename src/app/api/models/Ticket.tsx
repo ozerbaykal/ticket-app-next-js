@@ -1,8 +1,16 @@
-//ticket verisi için bir şema oluştur
-
 import mongoose, { Schema } from "mongoose";
 
-const ticketSchema = new Schema(
+export interface ITicket {
+  title: string;
+  description: string;
+  category: string;
+  priority: number;
+  progress: number;
+  status: string;
+}
+
+//ticket verisi için bir şema oluştur
+const ticketSchema = new Schema<ITicket>(
   {
     title: { type: String },
     description: { type: String },
@@ -17,6 +25,6 @@ const ticketSchema = new Schema(
 
 // Ticket verilerini yönetmek için  bir model oluştur
 //Eğerki daha önce oluşturulan bir ticket modeli varsa onu kullan yoksa yenisini oluştur
-const Ticket = mongoose.models.Ticket || mongoose.model("Ticket", ticketSchema);
+const Ticket = mongoose.models.Ticket || mongoose.model<ITicket>("Ticket", ticketSchema);
 
 export default Ticket;
