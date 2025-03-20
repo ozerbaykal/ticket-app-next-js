@@ -47,10 +47,12 @@ export async function POST(req: Request) {
       }
     );
   } catch (error) {
+    console.log(error);
     //client e cevap gönder
     return NextResponse.json(
       {
         message: "Ticket oluşturma başarısız ",
+        error,
       },
       {
         status: 400,

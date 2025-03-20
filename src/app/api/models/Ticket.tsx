@@ -15,7 +15,7 @@ const ticketSchema = new Schema<ITicket>(
     title: { type: String },
     description: { type: String },
     priority: { type: Number, enum: [1, 2, 3, 4, 5] },
-    status: { type: String, enum: ["Başladı", "Başlamadı", "Bitti"] },
+    status: { type: String, enum: ["Beklemede", "Devam Ediyor", "Çözüldü"] },
     category: { type: String, enum: ["Yazılım Sorunu", "Donanım Sorunu", "Bağlantı Sorunu"] },
     progress: { type: Number, min: 0, max: 100 },
   },

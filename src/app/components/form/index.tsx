@@ -1,15 +1,25 @@
 "use client";
+import { ITicket } from "@/app/api/models/Ticket";
+import { createTicket } from "@/app/utils/service";
+import { useRouter } from "next/navigation";
 import React, { FormEvent } from "react";
 
 const Form = () => {
+  const router = useRouter();
   //form gönderilince
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     //formdata ile inputlardaki verileri nesneye çevir
     const formData = new FormData(e.currentTarget);
     const ticketData = Object.fromEntries(formData.entries());
 
-    //todo api ya ticket oluşturma isteği at
+    // api ya ticket oluşturma isteği at
+    await createTicket(ticketData as unknown as ITicket);
+
+    //işlem başarılı olursa anasayfaya yönlendir
+    router.push("/tickets");
+    //satfayı yenile
+    router.refresh();
   };
   return (
     <div className="grid place-items-center">
@@ -39,9 +49,9 @@ const Form = () => {
         <fieldset>
           <label>Kategori</label>
           <select name="category">
-            <option value="">Yazılım sorunu</option>
-            <option value="">Donanım sorunu</option>
-            <option value="">Bağlantı sorunu</option>
+            <option>Yazılım Sorunu</option>
+            <option>Donanım Sorunu</option>
+            <option>Bağlantı Sorunu</option>
           </select>
         </fieldset>
         <fieldset>
@@ -52,9 +62,9 @@ const Form = () => {
         <fieldset>
           <label>Durum</label>
           <select name="status">
-            <option value="pending">Devam Ediyor</option>
-            <option value="in-progress">Beklemede</option>
-            <option value="solve">Çözüldü</option>
+            <option>Devam Ediyor</option>
+            <option>Beklemede</option>
+            <option>Çözüldü</option>
           </select>
         </fieldset>
 
