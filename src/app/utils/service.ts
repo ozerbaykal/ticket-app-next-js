@@ -1,4 +1,4 @@
-import { ITicket } from "../api/models/Ticket";
+import { ITicket, ITicketData } from "../api/models/Ticket";
 
 const baseURL = "http://localhost:3000";
 
@@ -15,8 +15,12 @@ export const createTicket = async (ticketData: ITicket): Promise<void> => {
     console.log("bir sorun oluştu");
   }
 };
+type getTicketResponse = {
+  message: string;
+  tickets: ITicketData[];
+};
 
-export const getTickets = async () => {
+export const getTickets = async (): Promise<getTicketResponse> => {
   const res = await fetch(`${baseURL}/api/tickets`);
 
   if (!res.ok) {

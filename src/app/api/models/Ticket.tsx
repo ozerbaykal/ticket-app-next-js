@@ -1,5 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
+//ticket verisini typeScripti çin tanımlama
 export interface ITicket {
   title: string;
   description: string;
@@ -7,6 +8,14 @@ export interface ITicket {
   priority: number;
   progress: number;
   status: string;
+}
+
+//mongodb den gelen cevap için ticket tipini tanımlama
+export interface ITicketData extends ITicket {
+  _id: String;
+  _v: number;
+  createdAt: string;
+  updatedAt: string;
 }
 
 //ticket verisi için bir şema oluştur
