@@ -1,7 +1,6 @@
 import { ITicket } from "@/app/api/models/Ticket";
 import Card from "@/app/components/card";
 import { getTickets } from "@/app/utils/service";
-import { DiVim } from "react-icons/di";
 
 const Tickets = async () => {
   const { tickets } = await getTickets();
