@@ -1,3 +1,6 @@
+"use client";
+import { deleteTicket } from "@/app/utils/service";
+import { useRouter } from "next/navigation";
 import { FaTrash } from "react-icons/fa";
 
 type Props = {
@@ -5,9 +8,18 @@ type Props = {
 };
 
 const DeleteBlock = ({ id }: Props) => {
+  const router = useRouter();
+  const handleDelete = async () => {
+    try {
+      await deleteTicket(id);
+      router.refresh();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="cursor-pointer hover:text-red-500 transition">
-      <FaTrash />
+      <FaTrash onClick={() => handleDelete} />
     </div>
   );
 };

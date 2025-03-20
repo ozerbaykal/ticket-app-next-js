@@ -1,3 +1,4 @@
+import { NextResponse } from "next/server";
 import { ITicket, ITicketData } from "../api/models/Ticket";
 
 const baseURL = "http://localhost:3000";
@@ -27,4 +28,10 @@ export const getTickets = async (): Promise<getTicketResponse> => {
     throw new Error("Ticket verileri alınamadı");
   }
   return res.json();
+};
+
+export const deleteTicket = async (id: string): Promise<void> => {
+  const res = await fetch(`${baseURL}/api/tickets/${id}`, {
+    method: "DELETE",
+  });
 };
