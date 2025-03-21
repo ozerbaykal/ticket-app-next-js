@@ -1,21 +1,33 @@
 import { FaTicket } from "react-icons/fa6";
 import ValueList from "../components/value-list";
 import { getStatics } from "../utils/service";
+import DashboardValue from "../components/dashboard-value";
+import { FaFire } from "react-icons/fa";
+import { IoMdCheckmarkCircle } from "react-icons/io";
 
 const Home = async () => {
   const data = await getStatics();
-  console.log(data);
 
   return (
     <div className="flex flex-col gap-10 pt-5">
-      <div className="bg-zinc-700 p-5 lg:p-10 text-zinc-300 font-semibold flex justify-between items-center">
-        <div>
-          <h1 className="text-4xl font-bold">{data.totalTickets}</h1>
-          <p>Toplam Ticket</p>
-        </div>
-
-        <FaTicket className="text-5xl text-blue-500 mt-12" />
+      <div className="flex flex-col xl:flex-row max-xl:gap-10 w-full gap-5">
+        <DashboardValue
+          title="Toplam Ticket"
+          value={data.totalTickets}
+          icon={<FaTicket className="text-blue-500" />}
+        />
+        <DashboardValue
+          title="Ortalama Öncelik"
+          value={data.averagePriority}
+          icon={<FaFire className="text-red-500" />}
+        />
+        <DashboardValue
+          title="Ortalama İlerleme"
+          value={data.averageProgress + " %"}
+          icon={<IoMdCheckmarkCircle className="text-green-500" />}
+        />
       </div>
+
       <ValueList title="Kategori Özeti" arr={data.ticketsByCategory} />
       <ValueList title="Durum Özeti" arr={data.ticketsByStatus} />
     </div>

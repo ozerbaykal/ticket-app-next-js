@@ -1,6 +1,6 @@
 type Props = {
   title: string;
-  arr: object;
+  arr: [string, number];
 };
 
 const ValueList = ({ title, arr }: Props) => {
