@@ -11,6 +11,7 @@ const DeleteBlock = ({ id }: Props) => {
   const router = useRouter();
   const handleDelete = async () => {
     try {
+      if (!confirm("Silmek istediğinizden emin misiniz")) return;
       await deleteTicket(id);
       router.refresh();
     } catch (error) {
@@ -19,7 +20,7 @@ const DeleteBlock = ({ id }: Props) => {
   };
   return (
     <div className="cursor-pointer hover:text-red-500 transition">
-      <FaTrash onClick={() => handleDelete} />
+      <FaTrash onClick={() => handleDelete()} />
     </div>
   );
 };
