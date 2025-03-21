@@ -5,7 +5,7 @@ import { getTickets } from "@/app/utils/service";
 const Tickets = async () => {
   const { tickets } = await getTickets();
 
-  const categories = [...new Set(tickets.map((i: ITicket) => i.category))];
+  const categories = [...new Set(tickets.map((i: ITicket) => i.category))].sort();
 
   return (
     <div className="p-5">

@@ -41,7 +41,7 @@ export async function GET(req: Request, { params }: Params) {
 
     //eleman bulunamazsa hata fırlat
     if (!ticket) {
-      NextResponse.json(
+      return NextResponse.json(
         { message: "aradığınız ticket bulunamadı" },
         {
           status: 404,
@@ -49,7 +49,7 @@ export async function GET(req: Request, { params }: Params) {
       );
     }
 
-    NextResponse.json({ message: "Ticket verisi alındı", ticket });
+    return NextResponse.json({ message: "Ticket verisi alındı", ticket });
   } catch (error) {
     return NextResponse.json(
       { message: "ticket verisi alınırken hata oluştu" },
@@ -73,7 +73,7 @@ export async function PUT(req: Request, { params }: Params) {
 
     const updated = await Ticket.findByIdAndUpdate(params.id, body);
 
-    NextResponse.json({ message: "Ticket verisi güncellendi", ticket: updated });
+    return NextResponse.json({ message: "Ticket verisi güncellendi", ticket: updated });
   } catch (error) {
     return NextResponse.json(
       { message: "Ticket verisi güncellenirken hata oluştu" },

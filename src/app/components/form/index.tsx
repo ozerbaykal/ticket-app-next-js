@@ -1,10 +1,15 @@
 "use client";
-import { ITicket } from "@/app/api/models/Ticket";
-import { createTicket } from "@/app/utils/service";
+import { ITicket, ITicketData } from "@/app/api/models/Ticket";
+import { createTicket, updateTicket } from "@/app/utils/service";
 import { useRouter } from "next/navigation";
 import React, { FormEvent } from "react";
+import { TbEyeEdit } from "react-icons/tb";
 
-const Form = () => {
+type Props = {
+  editItem: ITicketData | null;
+};
+
+const Form = ({ editItem }: Props) => {
   const router = useRouter();
   //form gönderilince
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -13,8 +18,14 @@ const Form = () => {
     const formData = new FormData(e.currentTarget);
     const ticketData = Object.fromEntries(formData.entries());
 
-    // api ya ticket oluşturma isteği at
-    await createTicket(ticketData as unknown as ITicket);
+    if (!editItem) {
+      //güncelleme modunda değilse
+      // api ya yeni ticket oluşturma isteği at
+      await createTicket(ticketData as unknown as ITicket);
+    } else {
+      //editItem modundaysa api'ya güncelleme isteği at
+      await updateTicket(editItem._id as string, ticketData as unknown as ITicket);
+    }
 
     //işlem başarılı olursa anasayfaya yönlendir
     router.push("/tickets");
@@ -26,12 +37,12 @@ const Form = () => {
       <form onSubmit={handleSubmit} className="flex flex-col gap-5 md:w-8/12  w-10/12 ">
         <fieldset>
           <label htmlFor="">Başlık</label>
-          <input type="text" name="title" required />
+          <input type="text" name="title" required defaultValue={editItem?.title} />
         </fieldset>
 
         <fieldset>
           <label htmlFor="">Açıklama</label>
-          <textarea name="description" required />
+          <textarea name="description" required defaultValue={editItem?.description} />
         </fieldset>
 
         <fieldset>
@@ -39,7 +50,13 @@ const Form = () => {
           <div className="flex gap-5">
             {new Array(5).fill("").map((i, key) => (
               <div key={key} className="flex gap-1">
-                <input type="radio" id={String(key)} name="priority" value={key + 1} />
+                <input
+                  type="radio"
+                  id={String(key)}
+                  name="priority"
+                  value={key + 1}
+                  defaultChecked={editItem?.priority === key + 1}
+                />
                 <label htmlFor={String(key)}>{key + 1}</label>
               </div>
             ))}
@@ -48,7 +65,7 @@ const Form = () => {
 
         <fieldset>
           <label>Kategori</label>
-          <select name="category">
+          <select name="category" defaultValue={editItem?.category}>
             <option>Yazılım Sorunu</option>
             <option>Donanım Sorunu</option>
             <option>Bağlantı Sorunu</option>
@@ -56,12 +73,12 @@ const Form = () => {
         </fieldset>
         <fieldset>
           <label>İlerleme</label>
-          <input type="range" name="progress" />
+          <input type="range" name="progress" defaultValue={editItem?.progress} />
         </fieldset>
 
         <fieldset>
           <label>Durum</label>
-          <select name="status">
+          <select name="status" defaultValue={editItem?.status}>
             <option>Devam Ediyor</option>
             <option>Beklemede</option>
             <option>Çözüldü</option>
@@ -69,7 +86,7 @@ const Form = () => {
         </fieldset>
 
         <button className="mt-5 bg-blue-600 p-2 rounded-md font-semibold hover:bg-blue-700 cursor-pointer transition">
-          Oluştur
+          {editItem ? "Kaydet" : "Oluştur"}
         </button>
       </form>
     </div>
