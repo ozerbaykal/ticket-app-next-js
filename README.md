@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎟 TicketApp - Next.js Full Stack Ticket Management System
+
+🚀 TicketApp is a full-stack ticket management application built with Next.js and TypeScript. It provides a dashboard to track ticket statistics and allows users to create, update, delete, and view tickets.
+
+## 📸 Screenshots
+
+### 📹 Video GIF
+
+![Video GIF](/public/images/recordTicket.gif)
+
+### 🏠 Home Screen
+
+![Home Screen](/public/images/homePage.png)
+
+### 🎟 Tickets Screen
+
+![Tİckets Screen](/public/images/ticketsPage.png)
+
+### 👔 Create Screen
+
+![Create Screen](/public/images/createTicket.png)
+
+## 🛠 Tech Stack
+
+Frontend: Next.js, TypeScript, Tailwind CSS
+Backend: API routes in Next.js (serverless functions)
+Database: MongoDB (with Mongoose ORM)
+
+## Features
+
+✅ Dashboard Overview – Displays ticket statistics like total tickets, average priority, and categories.
+✅ CRUD Operations – Create, update, delete, and view individual tickets.
+✅ API Routes – Built-in backend with Next.js API routes for handling ticket data.
+✅ MongoDB Integration – Uses Mongoose for database interactions.
+✅ Modern Styling – Tailwind CSS for a clean UI.
 
 ## Getting Started
 
-First, run the development server:
+1️⃣ Clone the Repository
+
+```
+git clone https://github.com/ozerbaykal/ticket-app-next-js.git
+cd ticket-app-next-js
+```
+
+Run the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contributing
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Want to contribute? Follow these steps:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Fork the repository 🍴
+Create a new branch 🌿
+Make your changes & commit 📌
+Submit a pull request 🚀
 
-## Learn More
+## Contact
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+👨‍💻 Developer: Özer BAYKAL
+📧 Email: baykalozer87@gmail.com
+🔗 LinkedIn:linkedin.com/in/özer-baykal
+📂 GitHub: (https://github.com/ozerbaykal)
